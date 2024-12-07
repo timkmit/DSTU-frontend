@@ -1,13 +1,11 @@
 import { Action, EnhancedStore, Reducer, ReducersMapObject } from "@reduxjs/toolkit";
 import { AxiosInstance } from "axios";
 import { UserSchema } from "@/entities/User";
-import { UISchema } from "@/features/UI";
 import { NavigateOptions, To } from "react-router-dom";
 import { rtkApi } from "@/shared/api/rtkApi";
 
 export interface StateSchema {
 	user: UserSchema;
-	ui: UISchema;
 	[rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
 	// Async reducers

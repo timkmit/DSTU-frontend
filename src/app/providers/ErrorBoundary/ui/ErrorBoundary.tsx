@@ -1,6 +1,7 @@
-import { Component, ErrorInfo, ReactNode, Suspense } from "react";
-import { PageError } from "@/widgets/PageError";
+import { getRouteError } from "@/shared/consts/router";
 import { PageLoader } from "@/widgets/PageLoader";
+import { Component, ErrorInfo, ReactNode, Suspense } from "react";
+import { Navigate } from "react-router-dom";
 
 interface ErrorBoundaryProps {
 	children: ReactNode;
@@ -17,6 +18,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 	}
 
 	static getDerivedStateFromError(error: Error) {
+		console.error(error.message);
 		return { hasError: true };
 	}
 
@@ -31,7 +33,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 		if (hasError) {
 			return (
 				<Suspense fallback={<PageLoader />}>
-					<PageError />
+					<Navigate to={getRouteError()} />
 				</Suspense>
 			);
 		}

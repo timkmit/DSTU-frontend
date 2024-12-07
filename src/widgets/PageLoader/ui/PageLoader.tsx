@@ -1,13 +1,9 @@
-import { FC } from "react";
 import { Loader } from "@/shared/ui/Loader";
-import { SPageLoader } from "./PageLoader.style";
 
-interface Props {}
-
-export const PageLoader: FC<Props> = () => {
+export const PageLoader = () => {
 	return (
-		<SPageLoader>
+		<div className="flex">
 			<Loader />
-		</SPageLoader>
+		</div>
 	);
 };
