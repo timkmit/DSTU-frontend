@@ -1,0 +1,147 @@
+/* Header.module.css */
+.header {
+	display: flex;
+	flex-direction: column; /* Расположение элементов друг под другом */
+	padding: 16px; /* Отступы вокруг */
+	background-color: white;
+}
+
+.topBar {
+	display: flex;
+	justify-content: space-between; /* Расположение элементов по краям */
+	align-items: center; /* Вертикальное выравнивание по центру */
+	margin-bottom: 16px;
+}
+
+.leftItems {
+	display: flex;
+	align-items: center;
+}
+
+.rightItems {
+	display: flex;
+	align-items: center;
+}
+
+.bottomBar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.text {
+	margin-left: 8px; /* Отступы слева для текста */
+	color: #5f6368;
+	font-size: 14px;
+}
+
+.icon {
+	width: 18px;
+	height: 18px;
+	color: #5f6368;
+}
+
+.prioritetText {
+	margin-left: 30px;
+	color: red;
+	font-size: 14px;
+}
+
+.rightButton {
+	display: flex;
+	align-items: center;
+	margin-left: 20px;
+	background-color: white;
+	border: none;
+	cursor: pointer;
+}
+
+.toggleButton {
+	position: relative;
+	display: inline-block;
+	width: 40px;
+	height: 24px;
+	margin-left: 20px;
+	background-color: #e0e0e0;
+	border-radius: 12px; /* Радиус скругления для переключателя */
+	cursor: pointer;
+}
+
+.toggleIconInactive {
+	position: absolute;
+	left: 2px;
+	top: 2px;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%; /* Круглая иконка */
+	background-color: white;
+	transition: left 0.3s ease; /* Плавное перемещение */
+}
+
+.toggleIconActive {
+	composes: toggleIconInactive;
+	left: calc(100% - 22px);
+}
+
+.logoAndUniversityName {
+	display: flex;
+	align-items: center;
+}
+
+.logo {
+	width: 60px; 
+	height: 60px;
+	margin-right: 12px; 
+}
+
+.universityName {
+	font-size: 16px;
+	color: #1a73e8;
+	font-weight: 600;
+}
+
+.menuItems {
+	display: flex;
+}
+
+.menuItem {
+	margin-left: 24px; /* Отступы между пунктами меню */
+	color: #5f6368;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.select {
+	margin-left: 20px;
+	color: #5f6368;
+	font-size: 14px;
+	border: none;
+	background-color: transparent;
+	appearance: none; /* Убираем стандартный вид селекта */
+	cursor: pointer;
+}
+
+.menuButton {
+	background-color: #1a73e8;
+    color: white;
+	border: none;
+	padding: 8px 16px;
+	border-radius: 4px;
+	font-size: 14px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	margin-left: 24px;
+}
+
+.menuButtonText {
+    color: white;
+	margin-right: 5px;
+}
+
+.menuIcon {
+	width: 18px;
+	height: 18px;
+	color: white;
+
+}

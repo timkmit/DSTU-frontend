@@ -1,0 +1,89 @@
+/* Fields.module.css */
+.inputWrapper {
+    display: flex;
+    align-items: center;
+    background-color: #E7E9ED;
+    border-radius: 12px;
+    padding: 8px;
+}
+
+.errorWrapper {
+    border: 2px solid #E44444;
+    color: #E44444
+}
+
+
+.focucedWrapper {
+    border: 2px solid #1370B9;
+}
+
+
+.input {
+    border: none;
+    flex-grow: 1;
+    background-color: #E7E9ED;
+    padding: 0;
+    font-size: 16px;
+    margin-left: 8px; 
+}
+
+.input:focus {
+    outline: none;
+    border: none;
+}
+
+.input:active {
+    outline: none;
+    border: none;
+}
+
+
+
+.title {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.disabledInput {
+    opacity: 0.5;
+    pointer-events: none; /* Запрещаем взаимодействие */
+}
+
+.inputIcon {
+    width: 16px;
+    height: 16px;
+}
+
+.closeIcon {
+    width: 16px;
+    height: 16px;
+    color: #808080;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+
+
+.caption {
+    font-size: 12px;
+    color: #808080;
+    margin-top: 4px;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.errorTitle {
+    composes: title;
+    color: red;
+}
+
+.errorCaption {
+    composes: caption;
+    color: red;
+
+}

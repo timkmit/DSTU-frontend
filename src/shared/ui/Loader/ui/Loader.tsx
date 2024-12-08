@@ -1,26 +1,13 @@
-import { FC } from "react";
-import { SLoader } from "./Loader.style";
+import styles from "./Loader.module.css";
 
-interface Props {}
-
-// Loader чисто для шаблона - надо менять под дизайн
-export const Loader: FC<Props> = () => {
+export const Loader = () => {
 	return (
-		<SLoader>
-			<div className="lds-spinner">
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
+		<div className={styles.loaderContainer}>
+			<div className={styles.loader}>
+				<div className={styles.innerOne}></div>
+				<div className={styles.innerTwo}></div>
+				<div className={styles.innerThree}></div>
 			</div>
-		</SLoader>
+		</div>
 	);
 };

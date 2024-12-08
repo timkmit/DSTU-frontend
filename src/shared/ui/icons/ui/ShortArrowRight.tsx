@@ -3,7 +3,7 @@ import { SVGProps } from "react";
 export const ShortArrowRight = (props: SVGProps<SVGSVGElement>) => (
 	<svg xmlns="http://www.w3.org/2000/svg" width={8} height={14} fill="none" {...props}>
 		<path
-			stroke="#fff"
+			stroke={props.stroke}
 			strokeLinecap="round"
 			strokeLinejoin="round"
 			strokeMiterlimit={10}
