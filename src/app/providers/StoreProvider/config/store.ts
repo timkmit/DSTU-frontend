@@ -1,35 +1,21 @@
-import { ReducersMapObject, configureStore } from "@reduxjs/toolkit";
-import { StateSchema } from "./StateSchema";
+import { configureStore } from "@reduxjs/toolkit";
 import { UserReducer } from "@/entities/User";
-import { $api } from "@/shared/api/api";
 import { rtkApi } from "@/shared/api/rtkApi";
-// import { NavigateOptions, To } from 'react-router-dom'
+import { SystemReducer } from "@/entities/System";
 
-export const createReduxStore = (
-	initaialState?: StateSchema,
-	asyncReducers?: ReducersMapObject<StateSchema>,
-	// nav?: (to: To, options?: NavigateOptions) => void
-) => {
-	const rootReducers: ReducersMapObject<StateSchema> = {
-		...asyncReducers,
+export const createReduxStore = () => {
+	const rootReducers = {
 		user: UserReducer,
+		system: SystemReducer,
 		[rtkApi.reducerPath]: rtkApi.reducer,
 	};
-
 
 	const store = configureStore({
 		// @ts-ignore
 		reducer: rootReducers,
 		devTools: __IS_DEV__,
-		preloadedState: initaialState,
-		middleware: (getDefaultMiddleware) =>
-			getDefaultMiddleware({
-				thunk: {
-					extraArgument: { api: $api /* nav */ },
-				},
-			}).concat(rtkApi.middleware),
+		middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat(rtkApi.middleware),
 	});
-
 
 	return store;
 };

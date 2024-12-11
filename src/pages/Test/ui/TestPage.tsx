@@ -55,7 +55,7 @@ const TestPage = () => {
 				<TextField label="Placeholder" disabled title="Disabled" />
 			</Paper>
 			<Typography.Title as="h3">Card</Typography.Title>
-			<Paper className="grid grid-cols-3 gap-3">
+			<Paper className="grid grid-cols-3 gap-3 max-sm:grid-cols-1">
 				<Card
 					title="Конкурс на получение грантов для реализации научно-исследовательских проектов «Наука-2030»"
 					description="Главный корпус ДГТУ"
