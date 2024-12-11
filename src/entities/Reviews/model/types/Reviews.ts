@@ -8,8 +8,8 @@ export interface SubjectReview {
 export interface EventReview {
 	event_id: number;
 	author: string;
-	rating: number;
-	positive_comment: string;
-	negative_comment: string;
-	additionally: string;
+	rating?: number;
+	positive_comment?: string;
+	negative_comment?: string;
+	additionally?: string;
 }

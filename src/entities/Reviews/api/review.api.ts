@@ -3,10 +3,10 @@ import { EventReview, SubjectReview } from "../model/types/Reviews";
 
 const reviewApi = rtkApi.injectEndpoints({
 	endpoints: (build) => ({
-		addEventReview: build.mutation<EventReview, EventReview>({
-			query: (eventReview) => ({
+		addEventReview: build.mutation<EventReview, EventReview & { city: string }>({
+			query: ({ city, ...eventReview }) => ({
 				method: "POST",
-				url: "/review_event",
+				url: `/review_event?city=${city}`,
 				body: eventReview,
 			}),
 		}),

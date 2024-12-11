@@ -6,8 +6,8 @@ const eventApi = rtkApi.injectEndpoints({
 		getAllEvents: build.query<Event[], string>({
 			query: (city: string) => `/get_events?city=${city}`,
 		}),
-		getEvent: build.query<ExtandedEvent, string>({
-			query: (id: string) => `/get_event/${id}`,
+		getEvent: build.query<ExtandedEvent, {city: string, id: string}>({
+			query: ({city, id}) => `/get_event/?city=${city}&id=${id}`,
 		}),
 	}),
 });

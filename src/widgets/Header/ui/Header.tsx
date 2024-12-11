@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import styles from "./Header.module.css";
 import { DGTUIcon } from "../../../shared/ui/icons/ui/DGTUIcon";
+import { useNavigate } from "react-router-dom";
+import { getRouteEventList } from "@/shared/consts/router";
 
 export const Header = () => {
 	const [isDarkMode, setIsDarkMode] = useState(false);
+	const nav = useNavigate();
 
 	const toggleDarkMode = () => {
 		setIsDarkMode(!isDarkMode);
@@ -98,7 +101,7 @@ export const Header = () => {
 				</div>
 			</div>
 			<div className={styles.bottomBar}>
-				<div className={styles.logoAndUniversityName}>
+				<div className={styles.logoAndUniversityName} onClick={() => nav(getRouteEventList())}>
 					<DGTUIcon className={styles.logo} />
 					<span className={styles.universityName}>Донской государственный технический университет</span>
 				</div>

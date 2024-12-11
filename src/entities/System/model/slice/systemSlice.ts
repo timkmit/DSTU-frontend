@@ -3,7 +3,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { ReviewSchema } from "../types/SystemSchema";
 
 const initialState: ReviewSchema = {
-	city: "Ростов-на-Дону",
+	city: "Шахты",
 };
 
 const systemSlice = buildSlice({

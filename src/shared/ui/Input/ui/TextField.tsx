@@ -1,8 +1,9 @@
-import React, { HTMLAttributes, ReactNode, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import styles from "./TextField.module.css";
 import cn from "classnames";
 
-interface TextFieldProps extends HTMLAttributes<HTMLInputElement> {
+interface TextFieldProps
+	extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
 	title?: string;
 	caption?: string;
 	error?: string;
@@ -38,24 +39,7 @@ export const TextField: React.FC<TextFieldProps> = ({
 					},
 				)}
 			>
-				{before ? (
-					before
-				) : (
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						className={cn(styles.inputIcon, error ? "text-[#E44444]" : "text-[#808080]")}
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth={2}
-							d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-						/>
-					</svg>
-				)}
+				{before ? before : null}
 				<input
 					{...props}
 					onFocus={() => setIsFocused(true)}

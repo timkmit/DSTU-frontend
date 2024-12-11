@@ -6,8 +6,8 @@ const subjectApi = rtkApi.injectEndpoints({
 		getAllSubjects: build.query<Subject[], string>({
 			query: (city: string) => `/get_subjects?city=${city}`,
 		}),
-		getSubject: build.query<ExpandedSubject, string>({
-			query: (id: string) => `/get_subject/${id}`,
+		getSubject: build.query<ExpandedSubject, { id: string; city: string }>({
+			query: ({ id, city }) => `/get_subject/?city=${city}&id=${id}`,
 		}),
 	}),
 });

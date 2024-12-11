@@ -1,15 +1,19 @@
 /* Header.module.css */
 .header {
 	display: flex;
-	flex-direction: column; /* Расположение элементов друг под другом */
-	padding: 16px; /* Отступы вокруг */
+	flex-direction: column;
+	/* Расположение элементов друг под другом */
+	padding: 16px;
+	/* Отступы вокруг */
 	background-color: white;
 }
 
 .topBar {
 	display: flex;
-	justify-content: space-between; /* Расположение элементов по краям */
-	align-items: center; /* Вертикальное выравнивание по центру */
+	justify-content: space-between;
+	/* Расположение элементов по краям */
+	align-items: center;
+	/* Вертикальное выравнивание по центру */
 	margin-bottom: 16px;
 }
 
@@ -30,7 +34,8 @@
 }
 
 .text {
-	margin-left: 8px; /* Отступы слева для текста */
+	margin-left: 8px;
+	/* Отступы слева для текста */
 	color: #5f6368;
 	font-size: 14px;
 }
@@ -63,7 +68,8 @@
 	height: 24px;
 	margin-left: 20px;
 	background-color: #e0e0e0;
-	border-radius: 12px; /* Радиус скругления для переключателя */
+	border-radius: 12px;
+	/* Радиус скругления для переключателя */
 	cursor: pointer;
 }
 
@@ -73,9 +79,11 @@
 	top: 2px;
 	width: 20px;
 	height: 20px;
-	border-radius: 50%; /* Круглая иконка */
+	border-radius: 50%;
+	/* Круглая иконка */
 	background-color: white;
-	transition: left 0.3s ease; /* Плавное перемещение */
+	transition: left 0.3s ease;
+	/* Плавное перемещение */
 }
 
 .toggleIconActive {
@@ -84,6 +92,7 @@
 }
 
 .logoAndUniversityName {
+	cursor: pointer;
 	display: flex;
 	align-items: center;
 }
@@ -108,17 +117,19 @@
 	.menuItems {
 		display: none;
 	}
+
 	.toolbarText {
 		display: none;
 	}
+
 	.logo {
-		width: 100px;
-		height: 60px;
+		display: none;
 	}
 }
 
 .menuItem {
-	margin-left: 24px; /* Отступы между пунктами меню */
+	margin-left: 24px;
+	/* Отступы между пунктами меню */
 	color: #5f6368;
 	font-size: 14px;
 	cursor: pointer;
@@ -130,7 +141,8 @@
 	font-size: 14px;
 	border: none;
 	background-color: transparent;
-	appearance: none; /* Убираем стандартный вид селекта */
+	appearance: none;
+	/* Убираем стандартный вид селекта */
 	cursor: pointer;
 }
 

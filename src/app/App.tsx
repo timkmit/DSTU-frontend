@@ -9,7 +9,7 @@ const App = () => {
 	return (
 		<div>
 			<Suspense fallback={<PageLoader />}>
-				<div className="content-page">
+				<div className="min-h-screen flex flex-col">
 					<Header />
 					<AppRouter />
 					<Footer />

@@ -12,19 +12,15 @@ export interface Analysis_summary {
 }
 
 export interface Review {
+	id: number;
 	rating: number;
-	review: string;
-}
-
-export interface Criteria {
-	name: string;
-	reviews: Review[];
-	average_rating: number;
-	number_of_reviews: number;
+	comment: string;
 }
 
 export interface ExpandedSubject {
-	analysis_summary: Analysis_summary;
-	criteria: Criteria[];
-	summary_comments: string;
+	id: number;
+	name: string;
+	average_rating: number;
+	number_of_reviews: number;
+	reviews: Review[];
 }

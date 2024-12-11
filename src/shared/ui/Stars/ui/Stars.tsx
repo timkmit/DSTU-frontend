@@ -45,7 +45,14 @@ export const Stars: React.FC<StarsProps> = ({
 }) => {
 	const stars = [];
 	for (let i = 0; i < maxRating; i++) {
-		stars.push(<Star className={starClassname} onClick={() => onStarClick?.(i + 1)} key={i} filled={i < rating} />);
+		stars.push(
+			<Star
+				className={cn({ "cursor-pointer": onStarClick }, starClassname)}
+				onClick={() => onStarClick?.(i + 1)}
+				key={i}
+				filled={i < rating}
+			/>,
+		);
 	}
 	return (
 		<div className={cn("flex", className)} {...props}>
