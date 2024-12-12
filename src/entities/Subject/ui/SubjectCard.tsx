@@ -16,7 +16,7 @@ export const SubjectCard: FC<EventCardProps> = ({ subject }) => {
 		<Card
 			title={subject.name}
 			description={`Средняя оценка: ${subject.average_rating}`}
-			actionDescription="Перейти к мероприятию"
+			actionDescription="Перейти к предмету"
 			caption={<Stars rating={subject.average_rating} />}
 			onClick={() => nav(getRouteSubjectById(subject.id.toString()))}
 		/>
