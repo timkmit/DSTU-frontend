@@ -31,7 +31,7 @@ const EventByIdPage = () => {
 
 	const fetchSummary = async () => {
 		try {
-			if (event && city && id) {
+			if (event && city && id && event.reviews.length !== 0) {
 				if (!event.summary) {
 					const summary = await getSummary({
 						city,
@@ -120,7 +120,7 @@ const EventByIdPage = () => {
 					<div className="flex p-4 justify-center items-center">
 						<Loader />
 					</div>
-				) : !currentSummary ? (
+				) : !currentSummary || event.reviews.length !== 0 ? (
 					<div className="flex p-4 justify-center items-center">
 						<Typography.Title as="h3">Простите, анализ невозможен</Typography.Title>
 					</div>

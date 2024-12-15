@@ -5,29 +5,37 @@ import { Loader } from "@/shared/ui/Loader";
 import { Paper } from "@/shared/ui/Paper";
 import { Stars } from "@/shared/ui/Stars";
 import { Typography } from "@/shared/ui/Text";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { EventSubjectSummary } from "../../../entities/Analysis/model/types/Sumary";
 
 const SubjectByIdPage = () => {
 	const { id } = useParams<{ id: string }>();
 	const { city } = useAppSelector((state) => state.system);
 	const { isLoading, data: subject } = useGetSubjectQuery({ city, id: id! });
-	const [getSummary, { isLoading: isSummaryLoading, data: summary }] = useLazyGetSubjectSummaryQuery();
+	const [getSummary, { isLoading: isSummaryLoading }] = useLazyGetSubjectSummaryQuery();
+	const [currentSummary, setCurrentSummary] = useState<null | EventSubjectSummary>(null);
 
-	useEffect(() => {
-		const fetchSummary = async () => {
-			try {
-				if (subject && city && id) {
-					await getSummary({
+	const fetchSummary = async () => {
+		try {
+			if (subject && city && id && subject.reviews.length !== 0) {
+				if (!subject.summary) {
+					const summary = await getSummary({
 						city,
 						related_id: Number(id),
 						review_ids: subject.reviews.slice(0, 10).map(({ id }) => id),
-					});
+					}).unwrap();
+					setCurrentSummary(summary);
+				} else {
+					setCurrentSummary(subject?.summary.content.summary);
 				}
-			} catch (e) {
-				console.log(e);
 			}
-		};
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
+	useEffect(() => {
 		fetchSummary();
 	}, [subject, city, id]);
 
@@ -60,16 +68,16 @@ const SubjectByIdPage = () => {
 					<div className="flex p-4 justify-center items-center">
 						<Loader />
 					</div>
-				) : !summary ? (
+				) : !currentSummary || subject.reviews.length !== 0 ? (
 					<div className="flex p-4 justify-center items-center">
 						<Typography.Title as="h3">Простите, анализ невозможен</Typography.Title>
 					</div>
 				) : (
 					<div className="grid sm:grid-cols-[2fr_1fr] max-sm:grid-rows-2 gap-2 p-2 max-h-[90vh] min-h-[80vh]">
-						<BarChart loading={isSummaryLoading} data={summary?.summary.evaluation_criteria || []} />
+						<BarChart loading={isSummaryLoading} data={currentSummary?.summary.evaluation_criteria || []} />
 						<Paper variant="white" className="flex flex-col gap-2  rounded-lg p-3">
 							<Typography.Title as="h3">Рекомендации</Typography.Title>
-							{summary?.summary.recommendations.map(({ text }) => <Paper className="p-2">{text}</Paper>)}
+							{currentSummary?.summary.recommendations.map(({ text }) => <Paper className="p-2">{text}</Paper>)}
 						</Paper>
 					</div>
 				)}

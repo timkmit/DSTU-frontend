@@ -1,3 +1,5 @@
+import { EventSubjectSummary } from "@/entities/Analysis";
+
 export interface Subject {
 	id: number;
 	name: string;
@@ -23,4 +25,13 @@ export interface ExpandedSubject {
 	average_rating: number;
 	number_of_reviews: number;
 	reviews: Review[];
+	summary?: {
+		id: number;
+		content: {
+			created_at: string;
+			review_ids: number[];
+			related_id: number;
+			summary: EventSubjectSummary;
+		};
+	};
 }
