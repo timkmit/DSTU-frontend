@@ -11,7 +11,9 @@ const App = () => {
 			<Suspense fallback={<PageLoader />}>
 				<div className="min-h-screen flex flex-col">
 					<Header />
-					<AppRouter />
+					<div className="flex-grow">
+						<AppRouter />
+					</div>
 					<Footer />
 				</div>
 			</Suspense>

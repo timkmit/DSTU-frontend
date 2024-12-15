@@ -1,7 +1,7 @@
 import { rtkApi } from "@/shared/api/rtkApi";
 import { ExpandedSubject, Subject } from "../model/types/Subject";
 
-const subjectApi = rtkApi.injectEndpoints({
+export const subjectApi = rtkApi.injectEndpoints({
 	endpoints: (build) => ({
 		getAllSubjects: build.query<Subject[], string>({
 			query: (city: string) => `/get_subjects?city=${city}`,

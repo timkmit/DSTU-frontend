@@ -1,7 +1,7 @@
 import { rtkApi } from "@/shared/api/rtkApi";
 import { EventReview, SubjectReview } from "../model/types/Reviews";
 
-const reviewApi = rtkApi.injectEndpoints({
+export const reviewApi = rtkApi.injectEndpoints({
 	endpoints: (build) => ({
 		addEventReview: build.mutation<EventReview, EventReview & { city: string }>({
 			query: ({ city, ...eventReview }) => ({

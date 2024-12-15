@@ -1,6 +1,8 @@
+import { LazyAdminPage } from "@/pages/AdminPage";
 import { LazyErrorPage } from "@/pages/ErrorPage";
 import { LazyEventByIdPage } from "@/pages/EventByIdPage";
 import { LazyEventListPage } from "@/pages/EventListPage";
+import { LazyFeedbackPage } from "@/pages/FeedbackPage";
 import { LazySubjectByIdPage } from "@/pages/SubjectByIdPage";
 import { LazySubjectListPage } from "@/pages/SubjectListPage";
 import { LazyTestPage } from "@/pages/Test";
@@ -12,6 +14,8 @@ import {
 	getRouteEventList,
 	getRouteSubjectById,
 	getRouteSubjectList,
+	getRouteAdminPage,
+	getRouteFeedbackPage,
 } from "@/shared/consts/router";
 import { AppRouteProps } from "@/shared/types/router";
 
@@ -39,5 +43,13 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
 	[AppRoutes.SUBJECT_LIST]: {
 		path: getRouteSubjectList(),
 		element: <LazySubjectListPage />,
+	},
+	[AppRoutes.ADMIN_PAGE]: {
+		path: getRouteAdminPage(),
+		element: <LazyAdminPage />,
+	},
+	[AppRoutes.FEEDBACK_PAGE]: {
+		path: getRouteFeedbackPage(),
+		element: <LazyFeedbackPage />,
 	},
 };
