@@ -6,9 +6,11 @@ export enum AppRoutes {
 	SUBJECT_LIST = "SUBJECT_LIST",
 	SUBJECT_BY_ID = "SUBJECT_BY_ID",
 	ADMIN_PAGE = "ADMIN_PAGE",
-	FEEDBACK_PAGE ="FEEDBACK_PAGE"
+	FEEDBACK_PAGE = "FEEDBACK_PAGE",
+	MAIN = "",
 }
 
+export const getRouteMain = () => "/";
 export const getRouteTest = () => "/test";
 export const getRouteError = () => "/error";
 export const getRouteEventList = () => "/event";

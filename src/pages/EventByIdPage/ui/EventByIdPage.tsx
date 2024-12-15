@@ -1,4 +1,5 @@
 import { BarChart, useLazyGetEventSummaryQuery } from "@/entities/Analysis";
+import { EventSubjectSummary } from "@/entities/Analysis/model/types/Sumary";
 import { useGetEventQuery } from "@/entities/Event";
 import { useAddEventReviewMutation } from "@/entities/Reviews";
 import { useAppSelector } from "@/shared/lib/hooks";
@@ -16,7 +17,8 @@ const EventByIdPage = () => {
 	const { id } = useParams<{ id: string }>();
 	const { city } = useAppSelector((state) => state.system);
 	const { isLoading, data: event, refetch } = useGetEventQuery({ city, id: id! });
-	const [getSummary, { isLoading: isSummaryLoading, data: summary }] = useLazyGetEventSummaryQuery();
+	const [getSummary, { isLoading: isSummaryLoading }] = useLazyGetEventSummaryQuery();
+	const [currentSummary, setCurrentSummary] = useState<null | EventSubjectSummary>(null);
 	const [addReview] = useAddEventReviewMutation();
 	const [isOpen, setIsOpen] = useState(false);
 	const [formData, setFormData] = useState<{
@@ -27,20 +29,26 @@ const EventByIdPage = () => {
 		rating?: number;
 	}>({ author: "" });
 
-	useEffect(() => {
-		const fetchSummary = async () => {
-			try {
-				if (event && city && id) {
-					await getSummary({
+	const fetchSummary = async () => {
+		try {
+			if (event && city && id) {
+				if (!event.summary) {
+					const summary = await getSummary({
 						city,
 						related_id: Number(id),
 						review_ids: event.reviews.slice(0, 10).map(({ id }) => id),
-					});
+					}).unwrap();
+					setCurrentSummary(summary);
+				} else {
+					setCurrentSummary(event?.summary.content.summary);
 				}
-			} catch (e) {
-				console.log(e);
 			}
-		};
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
+	useEffect(() => {
 		fetchSummary();
 	}, [event, city, id]);
 
@@ -112,16 +120,16 @@ const EventByIdPage = () => {
 					<div className="flex p-4 justify-center items-center">
 						<Loader />
 					</div>
-				) : !summary ? (
+				) : !currentSummary ? (
 					<div className="flex p-4 justify-center items-center">
 						<Typography.Title as="h3">Простите, анализ невозможен</Typography.Title>
 					</div>
 				) : (
 					<div className="grid sm:grid-cols-[2fr_1fr] max-sm:grid-rows-2 gap-2 p-2 max-h-[90vh] min-h-[80vh]">
-						<BarChart loading={isSummaryLoading} data={summary?.summary.evaluation_criteria || []} />
+						<BarChart loading={isSummaryLoading} data={currentSummary?.summary.evaluation_criteria || []} />
 						<Paper variant="white" className="flex flex-col gap-2  rounded-lg p-3">
 							<Typography.Title as="h3">Рекомендации</Typography.Title>
-							{summary?.summary.recommendations.map(({ text }) => <Paper className="p-2">{text}</Paper>)}
+							{currentSummary?.summary.recommendations.map(({ text }) => <Paper className="p-2">{text}</Paper>)}
 						</Paper>
 					</div>
 				)}

@@ -1,7 +1,9 @@
+import { EventSubjectSummary } from "@/entities/Analysis/model/types/Sumary";
+
 export interface Event {
 	id: number;
 	name: string;
-	average_rating: number
+	average_rating: number;
 }
 
 export interface Review {
@@ -19,4 +21,13 @@ export interface ExtandedEvent {
 	average_rating: number;
 	number_of_reviews: number;
 	reviews: Review[];
+	summary?: {
+		id: number;
+		content: {
+			created_at: string;
+			review_ids: number[];
+			related_id: number;
+			summary: EventSubjectSummary;
+		};
+	};
 }
