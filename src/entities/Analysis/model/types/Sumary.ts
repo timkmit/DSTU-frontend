@@ -16,6 +16,8 @@ export interface Summary {
 }
 
 export interface EventSubjectSummary {
+	evaluation_criteria: never[];
+	recommendations: any;
 	status: string;
 	summary: Summary;
 }

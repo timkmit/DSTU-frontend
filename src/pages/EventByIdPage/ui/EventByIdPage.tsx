@@ -32,25 +32,17 @@ const EventByIdPage = () => {
 	const fetchSummary = async () => {
 		try {
 			if (event && city && id && event.reviews.length !== 0) {
-				if (!event.summary) {
-					const summary = await getSummary({
-						city,
-						related_id: Number(id),
-						review_ids: event.reviews.slice(0, 10).map(({ id }) => id),
-					}).unwrap();
-					setCurrentSummary(summary);
-				} else {
-					setCurrentSummary(event?.summary.content.summary);
-				}
+				const summary = await getSummary({
+					city,
+					related_id: Number(id),
+					review_ids: event.reviews.slice(0, 10).map(({ id }) => id),
+				}).unwrap();
+				setCurrentSummary(summary);
 			}
 		} catch (e) {
 			console.log(e);
 		}
 	};
-
-	useEffect(() => {
-		fetchSummary();
-	}, [event, city, id]);
 
 	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -58,6 +50,14 @@ const EventByIdPage = () => {
 		await refetch();
 		setIsOpen(false);
 	};
+
+	if (isLoading) {
+		return (
+			<Paper className="flex flex-1 justify-center items-center p-3">
+				<Loader />
+			</Paper>
+		);
+	}
 
 	if (isLoading) {
 		return (
@@ -120,16 +120,20 @@ const EventByIdPage = () => {
 					<div className="flex p-4 justify-center items-center">
 						<Loader />
 					</div>
-				) : !currentSummary || event.reviews.length !== 0 ? (
+				) : !currentSummary ? (
 					<div className="flex p-4 justify-center items-center">
-						<Typography.Title as="h3">Простите, анализ невозможен</Typography.Title>
+						<Button onClick={fetchSummary}>Сгенерировать сводку</Button>
 					</div>
 				) : (
 					<div className="grid sm:grid-cols-[2fr_1fr] max-sm:grid-rows-2 gap-2 p-2 max-h-[90vh] min-h-[80vh]">
-						<BarChart loading={isSummaryLoading} data={currentSummary?.summary.evaluation_criteria || []} />
+						<div className="w-full">
+							<BarChart loading={isSummaryLoading} data={currentSummary?.evaluation_criteria || []} />
+						</div>
 						<Paper variant="white" className="flex flex-col gap-2  rounded-lg p-3">
 							<Typography.Title as="h3">Рекомендации</Typography.Title>
-							{currentSummary?.summary.recommendations.map(({ text }) => <Paper className="p-2">{text}</Paper>)}
+							{currentSummary?.summary.recommendations.map(({ text }) => (
+								<Paper className="p-2">{text}</Paper>
+							))}
 						</Paper>
 					</div>
 				)}
