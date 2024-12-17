@@ -37,7 +37,7 @@ const AdminPage = () => {
     }
   };
 
-  const handleFileChange = (e: { target: { files: any[]; }; }) => {
+  const handleFileChange = (e: any) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
       setFile(selectedFile);
@@ -151,8 +151,11 @@ const AdminPage = () => {
             Загрузить CSV-файл
           </Button>
         </form>
-
-        {error && <Typography.Title as="h3" className="text-red-500">Ошибка: {error.message}</Typography.Title>}
+              
+        {error && <Typography.Title as="h3" className="text-red-500">
+          Ошибка: 
+          {'message' in error ? error.message : JSON.stringify(error)}
+          </Typography.Title>}
       </Paper>
     </div>
   );

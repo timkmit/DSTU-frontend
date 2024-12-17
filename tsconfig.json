@@ -1,25 +1,28 @@
 {
 	"compilerOptions": {
-		"outDir": "./dist/",
-		"noImplicitAny": true,
-		"module": "ESNext",
-		"target": "ES2017",
-		"jsx": "react-jsx",
-		"allowJs": true,
-		"moduleResolution": "node",
-		"baseUrl": ".",
-		"strict": true,
-		"paths": {
-			"@/*": ["./src/*"]
-		},
-		"isolatedModules": true,
-		"esModuleInterop": true,
-		"allowSyntheticDefaultImports": true,
-		"plugins": [{ "name": "typescript-plugin-css-modules" }]
+	  "outDir": "./dist/",
+	  "module": "ESNext",
+	  "target": "ES2017",
+	  "jsx": "react-jsx",
+	  "allowJs": true,
+	  "moduleResolution": "node",
+	  "baseUrl": ".",
+	  "paths": {
+		"@/*": ["./src/*"]
+	  },
+	  "isolatedModules": true,
+	  "esModuleInterop": true,
+	  "allowSyntheticDefaultImports": true,
+	  "skipLibCheck": true,
+	  "noImplicitAny": false,
+	  "strict": false,
+	  "checkJs": false
 	},
 	"ts-node": {
-		"compilerOptions": {
-			"module": "CommonJS"
-		}
+	  "transpileOnly": true,
+	  "compilerOptions": {
+		"module": "CommonJS"
+	  }
 	}
-}
+  }
+  

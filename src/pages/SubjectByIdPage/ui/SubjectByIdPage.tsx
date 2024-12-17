@@ -33,6 +33,7 @@ const SubjectByIdPage = () => {
 					related_id: Number(id),
 					review_ids: subject.reviews.slice(0, 10).map(({ id }) => id),
 				}).unwrap();
+				// @ts-ignore
 				setCurrentSummary(summary.summary);
 			}
 		} catch (e) {

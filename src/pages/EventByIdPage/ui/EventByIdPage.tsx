@@ -131,9 +131,13 @@ const EventByIdPage = () => {
 						</div>
 						<Paper variant="white" className="flex flex-col gap-2  rounded-lg p-3">
 							<Typography.Title as="h3">Рекомендации</Typography.Title>
-							{currentSummary?.summary.recommendations.map(({ text }) => (
-								<Paper className="p-2">{text}</Paper>
-							))}
+							{currentSummary?.summary?.recommendations?.length ? (
+								currentSummary.summary.recommendations.map(({ text }) => (
+									<Paper className="p-2">{text}</Paper>
+								))
+							) : (
+								<Typography.Paragraph>Рекомендации отсутствуют</Typography.Paragraph>
+							)}
 						</Paper>
 					</div>
 				)}
