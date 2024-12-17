@@ -79,7 +79,7 @@ const SubjectByIdPage = () => {
 					</div>
 
 					<Paper variant="white" className="flex flex-col gap-2 rounded-lg p-3">
-						<Typography.Title as="h3">Рекомендации</Typography.Title>
+						<Typography.Title as="h3">Сводки</Typography.Title>
 						{currentSummary?.recommendations.map(({ text }, index) => (
 							<Paper key={index} className="p-2">
 								{text}
@@ -93,14 +93,15 @@ const SubjectByIdPage = () => {
 				</div>
 			)}
 			{!currentSummary && (
-				<div className="flex p-4 justify-center items-center">
-					<Button onClick={fetchSummary}>Сгенерировать</Button>
-				</div>
+				<>
+					<div className="flex p-4 justify-center items-center">
+						<Button onClick={fetchSummary}>Сгенерировать</Button>
+					</div>
+					<div className="flex justify-center"><br/>
+						<p>*примерное ожидание 5-15мин</p>
+					</div>
+				</>
 			)}
-
-			<div className="flex justify-center">
-				<p>*примерное ожидание 5-15мин</p>
-			</div>
 
 			<div>
 				<Typography.Title className="my-2" as="h4">
