@@ -8,7 +8,7 @@ import { Paper } from "@/shared/ui/Paper";
 const FeedbackPage = () => {
   const nav = useNavigate();
   const [city, setCity] = useState("");
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState<Event[]>([]);
   const [selectedEvent, setSelectedEvent] = useState("");
   const [author, setAuthor] = useState("");
   const [rating, setRating] = useState(0);
@@ -39,7 +39,7 @@ const FeedbackPage = () => {
     return () => clearTimeout(timer);
   }, [city]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
     if (!selectedEvent || !author || rating === 0 || !positiveComment || !negativeComment) {
@@ -72,7 +72,7 @@ const FeedbackPage = () => {
     }
   };
 
-  const StarRating = ({ currentRating, onRate }) => {
+  const StarRating = ({ currentRating, onRate }: StarRatingProps) => {
     return (
       <div className="flex space-x-1">
         {[1, 2, 3, 4, 5].map((star) => (
@@ -148,7 +148,7 @@ const FeedbackPage = () => {
 
             <div>
               <label className="block mb-1">Оценка мероприятия</label>
-              <StarRating currentRating={rating} onRate={(star) => setRating(star)} />
+              <StarRating currentRating={rating} onRate={(star: number) => setRating(star)} />
               {rating === 0 && <p className="text-red-500 text-sm">Выберите оценку</p>}
             </div>
 
@@ -188,3 +188,13 @@ const FeedbackPage = () => {
 };
 
 export default FeedbackPage;
+
+interface Event {
+  id: string;
+  name: string;
+}
+
+interface StarRatingProps {
+  currentRating: number;
+  onRate: (rating: number) => void;
+}

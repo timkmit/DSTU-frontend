@@ -1,0 +1,21 @@
+export var AppRoutes;
+(function (AppRoutes) {
+    AppRoutes["TEST"] = "TEST";
+    AppRoutes["ERROR"] = "ERROR";
+    AppRoutes["EVENT_LIST"] = "EVENT_LIST";
+    AppRoutes["EVENT_BY_ID"] = "EVENT_BY_ID";
+    AppRoutes["SUBJECT_LIST"] = "SUBJECT_LIST";
+    AppRoutes["SUBJECT_BY_ID"] = "SUBJECT_BY_ID";
+    AppRoutes["ADMIN_PAGE"] = "ADMIN_PAGE";
+    AppRoutes["FEEDBACK_PAGE"] = "FEEDBACK_PAGE";
+    AppRoutes["MAIN"] = "";
+})(AppRoutes || (AppRoutes = {}));
+export const getRouteMain = () => "/";
+export const getRouteTest = () => "/test";
+export const getRouteError = () => "/error";
+export const getRouteEventList = () => "/event";
+export const getRouteEventById = (id) => `/event/${id}`;
+export const getRouteSubjectList = () => `/subject`;
+export const getRouteSubjectById = (id) => `/subject/${id}`;
+export const getRouteAdminPage = () => `/adminpage`;
+export const getRouteFeedbackPage = () => `/feedback`;

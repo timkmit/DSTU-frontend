@@ -81,7 +81,7 @@ const SubjectByIdPage = () => {
 
 					<Paper variant="white" className="flex flex-col gap-2 rounded-lg p-3">
 						<Typography.Title as="h3">Сводки</Typography.Title>
-						{currentSummary?.recommendations.map(({ text }, index) => (
+						{currentSummary?.recommendations.map(({ text }: { text: string }, index: number) => (
 							<Paper key={index} className="p-2">
 								{text}
 							</Paper>

@@ -1,0 +1,1 @@
+import{r as u}from"./index-D15ONH7R.js";const c=u.injectEndpoints({endpoints:t=>({getAllSubjects:t.query({query:e=>`/get_subjects?city=${e}`}),getSubject:t.query({query:({id:e,city:s})=>`/get_subject/?city=${s}&id=${e}`})})}),{useGetAllSubjectsQuery:i,useGetSubjectQuery:j}=c;export{i as a,j as u};
