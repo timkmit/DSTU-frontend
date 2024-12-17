@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Header.module.css";
 import { DGTUIcon } from "../../../shared/ui/icons/ui/DGTUIcon";
 import { useNavigate } from "react-router-dom";
-import { getRouteEventList } from "@/shared/consts/router";
+import { getRouteAdminPage, getRouteFeedbackPage, getRouteMain } from "@/shared/consts/router";
 
 export const Header = () => {
 	const [isDarkMode, setIsDarkMode] = useState(false);
@@ -101,7 +101,7 @@ export const Header = () => {
 				</div>
 			</div>
 			<div className={styles.bottomBar}>
-				<div className={styles.logoAndUniversityName} onClick={() => nav(getRouteEventList())}>
+				<div className={styles.logoAndUniversityName} onClick={() => nav(getRouteMain())}>
 					<DGTUIcon className={styles.logo} />
 					<span className={styles.universityName}>Донской государственный технический университет</span>
 				</div>
@@ -113,8 +113,12 @@ export const Header = () => {
 					<span className={styles.menuItem}>Наука и инновации</span>
 				</div>
 
-				<button className={styles.menuButton}>
-					<div className={styles.menuButtonText}>Меню</div>
+				<button className={styles.menuButton} onClick={() => nav(getRouteFeedbackPage())}>
+					<div className={styles.menuButtonText}>Оставить отзыв</div>
+				</button>
+
+				<button className={styles.menuButton} onClick={() => nav(getRouteAdminPage())}>
+					<div className={styles.menuButtonText}>Админ панель</div>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"

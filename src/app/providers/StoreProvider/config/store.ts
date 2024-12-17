@@ -13,7 +13,7 @@ export const createReduxStore = () => {
 	const store = configureStore({
 		// @ts-ignore
 		reducer: rootReducers,
-		devTools: __IS_DEV__,
+		devTools: true,
 		middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat(rtkApi.middleware),
 	});
 

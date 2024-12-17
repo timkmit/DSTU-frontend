@@ -16,7 +16,7 @@ const SubjectByIdPage = () => {
 	const { isLoading, data: subject } = useGetSubjectQuery({ city, id: id! });
 	const [getSummary, { isLoading: isSummaryLoading }] = useLazyGetSubjectSummaryQuery();
 	const [currentSummary, setCurrentSummary] = useState<null | EventSubjectSummary>(null);
-	
+
 	useEffect(() => {
 		if (subject && subject.summary) {
 			setCurrentSummary(subject.summary.content.summary);
@@ -26,6 +26,10 @@ const SubjectByIdPage = () => {
 	}, [subject]);
 
 	const fetchSummary = async () => {
+		if ((subject?.reviews.length || 0) < 10) {
+			alert("Простите, невозможен анализ, так как слишком мало отзывов");
+			return;
+		}
 		try {
 			if (subject && city && id && subject.reviews.length > 0) {
 				const summary = await getSummary({
@@ -61,13 +65,10 @@ const SubjectByIdPage = () => {
 
 	return (
 		<Paper className="flex flex-col gap-4 flex-1 p-3">
-
 			<div className="flex flex-col gap-2">
 				<Typography.Title as="h3">{name}</Typography.Title>
 				<Typography.Title as="h4">Средняя оценка: {average_rating}</Typography.Title>
 			</div>
-
-
 
 			{isSummaryLoading ? (
 				<div className="flex p-4 justify-center items-center">
@@ -98,7 +99,8 @@ const SubjectByIdPage = () => {
 					<div className="flex p-4 justify-center items-center">
 						<Button onClick={fetchSummary}>Сгенерировать</Button>
 					</div>
-					<div className="flex justify-center"><br/>
+					<div className="flex justify-center">
+						<br />
 						<p>*примерное ожидание 5-15мин</p>
 					</div>
 				</>

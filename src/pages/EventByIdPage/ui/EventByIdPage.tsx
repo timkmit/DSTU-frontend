@@ -2,6 +2,7 @@ import { BarChart, useLazyGetEventSummaryQuery } from "@/entities/Analysis";
 import { EventSubjectSummary } from "@/entities/Analysis/model/types/Sumary";
 import { useGetEventQuery } from "@/entities/Event";
 import { useAddEventReviewMutation } from "@/entities/Reviews";
+import { Parad } from "@/features/Parad";
 import { useAppSelector } from "@/shared/lib/hooks";
 import { Button } from "@/shared/ui/Button";
 import { TextField } from "@/shared/ui/Input";
@@ -10,7 +11,7 @@ import { Modal } from "@/shared/ui/Modal";
 import { Paper } from "@/shared/ui/Paper";
 import { Stars } from "@/shared/ui/Stars";
 import { Typography } from "@/shared/ui/Text";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const EventByIdPage = () => {
@@ -28,8 +29,14 @@ const EventByIdPage = () => {
 		additionally?: string;
 		rating?: number;
 	}>({ author: "" });
+	const [startAnim, setStartAnim] = useState<() => void>(() => {});
 
 	const fetchSummary = async () => {
+		if ((event?.reviews.length || 0) < 10) {
+			alert("Простите, невозможен анализ, так как слишком мало отзывов");
+			return;
+		}
+
 		try {
 			if (event && city && id && event.reviews.length !== 0) {
 				const summary = await getSummary({
@@ -47,6 +54,8 @@ const EventByIdPage = () => {
 	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		await addReview({ ...formData, event_id: Number(id), city });
+		console.log("start Anim");
+		startAnim();
 		await refetch();
 		setIsOpen(false);
 	};
@@ -78,6 +87,7 @@ const EventByIdPage = () => {
 
 	return (
 		<>
+			<Parad setStartAnim={setStartAnim} />
 			<Modal onClose={() => setIsOpen(false)} isOpen={isOpen} title="Новый отзыв">
 				<form className="flex flex-col gap-2 p-2 mt-3" onSubmit={onSubmit}>
 					<TextField
@@ -132,9 +142,7 @@ const EventByIdPage = () => {
 						<Paper variant="white" className="flex flex-col gap-2  rounded-lg p-3">
 							<Typography.Title as="h3">Рекомендации</Typography.Title>
 							{currentSummary?.summary?.recommendations?.length ? (
-								currentSummary.summary.recommendations.map(({ text }) => (
-									<Paper className="p-2">{text}</Paper>
-								))
+								currentSummary.summary.recommendations.map(({ text }) => <Paper className="p-2">{text}</Paper>)
 							) : (
 								<Typography.Paragraph>Рекомендации отсутствуют</Typography.Paragraph>
 							)}

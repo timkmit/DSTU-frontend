@@ -1,2 +1,0 @@
-import { jsx as _jsx } from "react/jsx-runtime";
-export const ShortArrowRight = (props) => (_jsx("svg", Object.assign({ xmlns: "http://www.w3.org/2000/svg", width: 8, height: 14, fill: "none" }, props, { children: _jsx("path", { stroke: props.stroke, strokeLinecap: "round", strokeLinejoin: "round", strokeMiterlimit: 10, strokeWidth: 1.5, d: "M1.61 12.333 6 7.943a1.337 1.337 0 0 0 0-1.886L1.61 1.666" }) })));
