@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { TextField } from "@/shared/ui/Input";
 import { Button } from "@/shared/ui/Button";
 import { Typography } from "@/shared/ui/Text";
@@ -7,7 +6,6 @@ import { Paper } from "@/shared/ui/Paper";
 import { Parad } from "@/features/Parad";
 
 const FeedbackPage = () => {
-	const nav = useNavigate();
 	const [city, setCity] = useState("");
 	const [events, setEvents] = useState<Event[]>([]);
 	const [selectedEvent, setSelectedEvent] = useState("");
